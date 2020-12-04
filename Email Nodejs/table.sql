@@ -1,0 +1,13 @@
+CREATE DATABASE emailapp;
+
+USE emailapp;
+
+DROP TABLE IF EXISTS emails;
+CREATE TABLE emails (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `from` VARCHAR(64) NOT NULL,
+  `to` VARCHAR(64) NOT NULL,
+  `subject` TEXT NOT NULL,
+  `message` TEXT NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
