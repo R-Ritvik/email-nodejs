@@ -36,23 +36,18 @@ app.post('/send', (req, res) => {
 	
 	send(from, to, subject, text);
 	
-	let stmt = `INSERT INTO emails(from,to,subject,message) VALUES(?,?,?,?)`;
+	let stmt = `INSERT INTO emails(\`from\`,\`to\`,\`subject\`,\`message\`) VALUES(?,?,?,?);`;
 	let values = [from,to, subject, text];
 	
 	/* Inserting into database */
 	
-	connection.connect()
-
 	connection.query(stmt, values, function (err, rows, fields) {
 	  if (err) {
-	      console.log('Unable to connect to database');
+	      console.log('Unable to connect to database' + err);
 	  }
 
 	  //console.log('Successfully inserted in database. Row ID:' + rows.insertId);
 	});
-	
-	connection.end();
-
 	
 	
 	res.sendStatus(200);
@@ -92,3 +87,5 @@ async function send(from, to, subject, text) {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+//to start the server
